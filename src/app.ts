@@ -1,3 +1,15 @@
+// Drag & Drop Interfaces
+interface Draggable {
+	dragStartHandler(event: DragEvent): void
+	dragEndHandler(event: DragEvent): void
+}
+
+interface DragTarget {
+	dragOverHandler(event: DragEvent): void
+	dropHandler(event: DragEvent): void
+	dragLeaveHandler(event: DragEvent): void
+}
+
 // Project Type
 enum ProjectStatus {
 	Active,
@@ -23,7 +35,7 @@ class State<T> {
 		this.listeners.push(listenerFn)
 	}
 }
-class ProjectState extends State<Project>{
+class ProjectState extends State<Project> {
 	private projects: Project[] = []
 	private static instance: ProjectState
 
@@ -178,10 +190,10 @@ class ProjectItem extends Component<HTMLUListElement, HTMLLIElement> {
 
 	renderContent() {
 		this.element.querySelector('h2')!.textContent = this.project.title
-		this.element.querySelector('h3')!.textContent = this.persons + ' assigned'
-		this.element.querySelector('p')!.textContent = this.project.description 
+		this.element.querySelector('h3')!.textContent =
+			this.persons + ' assigned'
+		this.element.querySelector('p')!.textContent = this.project.description
 	}
-
 }
 
 // ProjectList Class
@@ -229,7 +241,7 @@ class ProjectList extends Component<HTMLDivElement, HTMLElement> {
 }
 
 // ProjectInput Class
-class ProjectInput extends Component<HTMLDivElement, HTMLFormElement>{
+class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
 	titleInputElement: HTMLInputElement
 	descriptionInputElement: HTMLInputElement
 	peopleInputElement: HTMLInputElement
@@ -305,7 +317,6 @@ class ProjectInput extends Component<HTMLDivElement, HTMLFormElement>{
 			this.clearInputs()
 		}
 	}
-
 }
 
 const prjInput = new ProjectInput()
